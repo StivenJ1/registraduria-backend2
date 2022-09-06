@@ -22,7 +22,6 @@ import java.util.List;
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @ControllerAdvice
 public class MinticExceptionHandler {
-/*
     @ExceptionHandler(value = MinticException.class)
     protected ResponseEntity<Object> handleException(MinticException ex, WebRequest request) {
         HttpServletRequest httpServletRequest = ((ServletWebRequest) request).getRequest();
@@ -35,7 +34,7 @@ public class MinticExceptionHandler {
                 .build();
         ResponseEntity<Object> response = new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
         return response;
-    }*/
+    }
 
     @ExceptionHandler(
             value = {
