@@ -2,6 +2,7 @@ package com.example.registraduriabackseguridad.controller;
 
 import com.example.registraduriabackseguridad.dtos.request.LoginDto;
 import com.example.registraduriabackseguridad.dtos.response.UserResponseDto;
+import com.example.registraduriabackseguridad.services.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,7 @@ import javax.validation.Valid;
 public class AuthController {
     @Autowired
     private AuthService service;
+
 
     @PostMapping("/")
     public ResponseEntity<UserResponseDto> login(@RequestBody @Valid LoginDto request) {

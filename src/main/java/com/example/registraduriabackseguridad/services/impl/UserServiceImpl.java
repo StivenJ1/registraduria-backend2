@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
     //Repository de user
     @Autowired
-    private UserRepository repo;
+    private UserRepository userRepo;
 
     //Repositorio de rol todos son de tipo ciudadano
     @Autowired
@@ -41,12 +41,12 @@ public class UserServiceImpl implements UserService {
     public CreateUserResponseDto create(CreateUserRequestDto user){
         //Creación de usuario con los atributos que esta en la colección
         User userToCreate = User.builder()
-                .correo(user.getCorreo())
+                .email(user.getCorreo())
                 .seudonimo(user.getSeudonimo())
                 .contrasena(encoder.encode(user.getContrasena()))
                 .roleId(roleRepo.findOneByName("Ciudadano").get().get_id())
                 .build();
-        userToCreate = repo.save(userToCreate); // creación del usuario
+        userToCreate = userRepo.save(userToCreate); // creación del usuario
         return CreateUserResponseDto.builder()
                 .id(userToCreate.get_id())
                 .build();
@@ -55,8 +55,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public void delete(String id){
         //Se obtiene el id
-        repo.findById(id).map(x -> {
-            repo.delete(x);
+        userRepo.findById(id).map(x -> {
+            userRepo.delete(x);
             return null;
         }).orElseThrow(() -> new MinticException("Usuario no existe", 404, new Date())); // envío del error si el usurio no existe
     }
@@ -64,18 +64,18 @@ public class UserServiceImpl implements UserService {
     @Override
     public void update(UpdateUserRequestDto user, String id) {
         //Se obtiene el id y devuelve el usuario
-        User userFound =  repo.findById(id).map(x -> {
+        User userFound =  userRepo.findById(id).map(x -> {
             return x;
         }).orElseThrow(() -> new MinticException("Usuario no existe", 404, new Date()));// envío del error si el usurio no existe
         //Actualización de la contraseña
         user.setContrasena(user.getContrasena() != null ? user.getContrasena() : userFound.getContrasena());
-        repo.save(userFound);
+        userRepo.save(userFound);
     }
     //Método para mostar usuarios por id
     @Override
     public UserResponseDto getById(String id) {
         //Se obtiene el id
-        User user = repo.findById(id).map(x -> {
+        User user = userRepo.findById(id).map(x -> {
             return x;
         }).orElseThrow(() -> new MinticException("Usuario no existe", 404, new Date()));
         // Busca el rol
@@ -85,7 +85,7 @@ public class UserServiceImpl implements UserService {
                         .name(role.getName())
                         .description(role.getDescription())
                         .build())
-                .correo(user.getCorreo())
+                .email(user.getEmail())
                 .seudonimo(user.getSeudonimo())
                 ._id(user.get_id())
                 .build();
@@ -96,7 +96,7 @@ public class UserServiceImpl implements UserService {
     public List<UserResponseDto> getUsers(String role) {
         //Busca el rol en su nombre
         Role r = roleRepo.findOneByName(role).get();
-        List<User> users = repo.findAllByRoleId(r.get_id());
+        List<User> users = userRepo.findByRoleId(r.get_id());
 //        List<User> users = repo.findByRoleId(r.get_id());
 
         List<UserResponseDto> usersToReturn = new ArrayList<>();
@@ -107,7 +107,7 @@ public class UserServiceImpl implements UserService {
                                     .name(r.getName())
                                     .description(r.getDescription())
                                     .build())
-                            .correo(user.getCorreo())
+                            .email(user.getEmail())
                             .seudonimo(user.getSeudonimo())
                             ._id(user.get_id())
                             .build()
@@ -118,7 +118,7 @@ public class UserServiceImpl implements UserService {
     //Método para mostar todos los usuarios
     @Override
     public List<UserResponseDto> getUsers() {
-        List<User> users = repo.findAll();
+        List<User> users = userRepo.findAll();
         Set<String> roleIds = users.stream().map(x -> x.getRoleId()).collect(Collectors.toSet()); //id de los roles únicos
         List<Role> roles = (List<Role>) roleRepo.findAllById(roleIds);// Busca los roles por Id
         //lista de respuesta
@@ -132,7 +132,7 @@ public class UserServiceImpl implements UserService {
                                     .name(role.getName())
                                     .description(role.getDescription())
                                     .build())
-                            .correo(user.getCorreo())
+                            .email(user.getEmail())
                             .seudonimo(user.getSeudonimo())
                             ._id(user.get_id())
                             .build()

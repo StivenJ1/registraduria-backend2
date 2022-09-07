@@ -10,9 +10,11 @@ import com.example.registraduriabackseguridad.exceptions.MinticException;
 import com.example.registraduriabackseguridad.services.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
+@Service
 public class AuthServiceImpl implements AuthService {
     @Autowired
     private UserRepository userRepo;
@@ -34,7 +36,7 @@ public class AuthServiceImpl implements AuthService {
                         .name(role.getName())
                         .description(role.getDescription())
                         .build())
-                .correo(user.getCorreo())
+                .email(user.getEmail())
                 ._id(user.get_id())
                 .seudonimo(user.getSeudonimo())
                 .build();

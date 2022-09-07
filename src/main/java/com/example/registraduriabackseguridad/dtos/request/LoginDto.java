@@ -13,9 +13,9 @@ public class LoginDto {
     @NotNull()
     @NotEmpty()
     @Email()
-    private String correo;
+    private String email;
     @NotNull()
     @NotEmpty()
     @Size(min = 8)
-    private String contrasena;
+    private String password;
 }

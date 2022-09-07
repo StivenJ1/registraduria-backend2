@@ -12,6 +12,6 @@ public class UserResponseDto {
     //Rerspuesta que devuelve el programa
     private String _id;
     private String seudonimo;
-    private String correo;
+    private String email;
     private RoleResponseDto role;
 }

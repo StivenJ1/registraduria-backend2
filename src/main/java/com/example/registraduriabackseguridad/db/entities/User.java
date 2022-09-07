@@ -16,7 +16,7 @@ public class User {
     @Id
     private String _id;
     private String seudonimo;
-    private String correo;
+    private String email;
     private String contrasena;
     @Field(name = "role_id")
     private String roleId;
