@@ -13,5 +13,5 @@ public class UserResponseDto {
     private String _id;
     private String seudonimo;
     private String correo;
-//    private RoleResponseDto role;
+    private RoleResponseDto role;
 }

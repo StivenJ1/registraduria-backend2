@@ -3,8 +3,11 @@ package com.example.registraduriabackseguridad.controller;
 import com.example.registraduriabackseguridad.dtos.request.CreateUserRequestDto;
 import com.example.registraduriabackseguridad.dtos.request.UpdateUserRequestDto;
 import com.example.registraduriabackseguridad.dtos.response.CreateUserResponseDto;
+import com.example.registraduriabackseguridad.dtos.response.ErrorDto;
 import com.example.registraduriabackseguridad.dtos.response.UserResponseDto;
 import com.example.registraduriabackseguridad.services.UserService;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +30,7 @@ public class UserController {
     }
 
     //Mostrar todos los usuarios por rol
-    @GetMapping("/{role:Administrador|Ciudadano|Jurado}")
+    @GetMapping("/{role:Admin|Ciudadano|Jurado}")
     public ResponseEntity<List<UserResponseDto>> getAllByRole(@PathVariable String role) {
         return ResponseEntity.ok(service.getUsers(role));
     }
@@ -40,6 +43,18 @@ public class UserController {
 
     //Creación del usuario del requestBody y la validación
     @PostMapping("/")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    code = 200,
+                    message = "Operación exitosa",
+                    response = CreateUserResponseDto.class
+            ),
+            @ApiResponse(
+                    code = 400,
+                    message = "Error de validación",
+                    response = ErrorDto.class
+            )
+    })
     public ResponseEntity<CreateUserResponseDto> create(@RequestBody @Valid CreateUserRequestDto request) {
         return ResponseEntity.ok(service.create(request));
     }
@@ -56,7 +71,4 @@ public class UserController {
         service.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
-
-
 }
