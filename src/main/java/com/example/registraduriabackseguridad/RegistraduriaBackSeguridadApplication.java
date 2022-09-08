@@ -14,7 +14,6 @@ public class RegistraduriaBackSeguridadApplication {
     }
 
     //Encriptación de la contraseña -- > se debe instalar la depenedencia spring-security-crypto
-    //
     @Bean
     public PasswordEncoder passwordEncoder() {
         //Retorna una instancia de BCryptPasswordEncoder

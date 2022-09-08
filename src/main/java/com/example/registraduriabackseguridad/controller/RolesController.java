@@ -19,7 +19,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/roles")
-
 public class RolesController {
 
     @Autowired
@@ -38,6 +37,7 @@ public class RolesController {
             }
     )
     public ResponseEntity<List<RoleResponseDto>> getAllRoles(){
+
         return ResponseEntity.ok(service.getAllRoles());
     }
 

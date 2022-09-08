@@ -87,7 +87,7 @@ public class UserServiceImpl implements UserService {
                         .build())
                 .correo(user.getCorreo())
                 .seudonimo(user.getSeudonimo())
-                ._id(user.get_id())
+                .id(user.get_id())
                 .build();
 
     }
@@ -97,8 +97,6 @@ public class UserServiceImpl implements UserService {
         //Busca el rol en su nombre
         Role r = roleRepo.findOneByName(role).get();
         List<User> users = repo.findAllByRoleId(r.get_id());
-//        List<User> users = repo.findByRoleId(r.get_id());
-
         List<UserResponseDto> usersToReturn = new ArrayList<>();
         for (User user: users) {
             usersToReturn.add(
@@ -109,7 +107,7 @@ public class UserServiceImpl implements UserService {
                                     .build())
                             .correo(user.getCorreo())
                             .seudonimo(user.getSeudonimo())
-                            ._id(user.get_id())
+                            .id(user.get_id())
                             .build()
             );
         }
@@ -134,7 +132,7 @@ public class UserServiceImpl implements UserService {
                                     .build())
                             .correo(user.getCorreo())
                             .seudonimo(user.getSeudonimo())
-                            ._id(user.get_id())
+                            .id(user.get_id())
                             .build()
             );
         }
