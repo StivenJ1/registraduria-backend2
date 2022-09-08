@@ -68,7 +68,8 @@ public class UserServiceImpl implements UserService {
             return x;
         }).orElseThrow(() -> new MinticException("Usuario no existe", 404, new Date()));// envío del error si el usurio no existe
         //Actualización de la contraseña
-        user.setContrasena(user.getContrasena() != null ? user.getContrasena() : userFound.getContrasena());
+        userFound.setContrasena(user.getContrasena() != null ? user.getContrasena() : userFound.getContrasena());
+        userFound.setSeudonimo(user.getSeudonimo() != null ? user.getSeudonimo() : userFound.getSeudonimo());
         repo.save(userFound);
     }
     //Método para mostar usuarios por id

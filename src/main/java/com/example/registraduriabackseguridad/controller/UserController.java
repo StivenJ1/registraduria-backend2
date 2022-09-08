@@ -30,7 +30,7 @@ public class UserController {
     }
 
     //Mostrar todos los usuarios por rol
-    @GetMapping("/{role:Admin|Ciudadano|Jurado}")
+    @GetMapping("/roles/{role:Admin|Ciudadano|Jurado}")
     public ResponseEntity<List<UserResponseDto>> getAllByRole(@PathVariable String role) {
         return ResponseEntity.ok(service.getUsers(role));
     }
