@@ -26,10 +26,10 @@ public class RolServicesImpl implements RoleServices {
     private RoleRepository repo;
 
     @Autowired
-    private PermissionRepository permissionRepository;
+    private PermissionRoleRepository permissionRoleRepository;
 
     @Autowired
-    private PermissionRoleRepository permissionRoleRepository;
+    private PermissionRepository permissionRepository;
 
     @Override
     public List<RoleResponseDto> getAllRoles() {

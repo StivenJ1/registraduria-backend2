@@ -37,7 +37,6 @@ public class RolesController {
             }
     )
     public ResponseEntity<List<RoleResponseDto>> getAllRoles(){
-
         return ResponseEntity.ok(service.getAllRoles());
     }
 

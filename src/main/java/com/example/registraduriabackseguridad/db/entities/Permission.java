@@ -8,10 +8,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-@Document
+@Document()
 public class Permission {
     @Id
     private String _id;

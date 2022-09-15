@@ -18,6 +18,6 @@ public class User {
     private String seudonimo;
     private String correo;
     private String contrasena;
-    @Field(name = "role_id")
+//    @Field(name = "role_id")
     private String roleId;
 }

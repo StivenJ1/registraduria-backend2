@@ -9,7 +9,6 @@ import lombok.*;
 @Builder
 
 public class RoleResponseDto {
-
     private String name;
     private String description;
 }

@@ -4,6 +4,7 @@ package com.example.registraduriabackseguridad.db.repositories;
 import com.example.registraduriabackseguridad.db.entities.PermissionRole;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
