@@ -51,6 +51,7 @@ public class UserServiceImpl implements UserService {
                 .id(userToCreate.get_id())
                 .build();
     }
+
     //Método para eliminar usuarios
     @Override
     public void delete(String id){
@@ -60,6 +61,7 @@ public class UserServiceImpl implements UserService {
             return null;
         }).orElseThrow(() -> new MinticException("Usuario no existe", 404, new Date())); // envío del error si el usurio no existe
     }
+
     //Método para actulizar usuarios
     @Override
     public void update(UpdateUserRequestDto user, String id) {
@@ -89,8 +91,8 @@ public class UserServiceImpl implements UserService {
                 .seudonimo(user.getSeudonimo())
                 .id(user.get_id())
                 .build();
-
     }
+
     //Método para mostar usuarios por rol
     @Override
     public List<UserResponseDto> getUsers(String role) {
