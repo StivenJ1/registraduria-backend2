@@ -9,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class UserResponseDto {
-    //Rerspuesta que devuelve el programa
+    //Respuesta que devuelve el programa
     private String id;
     private String seudonimo;
     private String correo;

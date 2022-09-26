@@ -70,7 +70,9 @@ public class UserServiceImpl implements UserService {
 
         //Actualización de la contraseña
         userFound.setContrasena(encoder.encode( user.getContrasena() != null ? user.getContrasena() : userFound.getContrasena()));
+        //Actualización de seudonimo
         userFound.setSeudonimo(user.getSeudonimo() != null ? user.getSeudonimo() : userFound.getSeudonimo());
+        //Actualizar rol de usuario
         userFound.setRoleId(user.getRoleId() != null ? user.getRoleId() : userFound.getRoleId());
         repo.save(userFound);
     }

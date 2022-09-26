@@ -10,6 +10,7 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @Builder
 public class UpdateUserRequestDto {
+    //Datos del usuario que se actulizan
     @Size(min = 2,message = "Seudónimo muy corto" )
     private String seudonimo;
     @Size(min = 8, message = "contraseña es muy corta") //longitud del texto mínimo 8 caracteres
