@@ -44,5 +44,4 @@ public class RolesController {
     public ResponseEntity<List<PermissionResponseDto>> getAllPermissionByRole(@PathVariable String role){
         return ResponseEntity.ok(service.getAllPermission(role));
     }
-
 }

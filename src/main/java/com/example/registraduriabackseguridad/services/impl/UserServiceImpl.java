@@ -67,9 +67,11 @@ public class UserServiceImpl implements UserService {
         User userFound =  repo.findById(id).map(x -> {
             return x;
         }).orElseThrow(() -> new MinticException("Usuario no existe", 404, new Date()));// envío del error si el usurio no existe
+
         //Actualización de la contraseña
-        userFound.setContrasena(user.getContrasena() != null ? user.getContrasena() : userFound.getContrasena());
+        userFound.setContrasena(encoder.encode( user.getContrasena() != null ? user.getContrasena() : userFound.getContrasena()));
         userFound.setSeudonimo(user.getSeudonimo() != null ? user.getSeudonimo() : userFound.getSeudonimo());
+        userFound.setRoleId(user.getRoleId() != null ? user.getRoleId() : userFound.getRoleId());
         repo.save(userFound);
     }
     //Método para mostar usuarios por id
